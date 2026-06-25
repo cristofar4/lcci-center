@@ -50,7 +50,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-[100svh] min-h-[680px] w-full overflow-hidden">
+    <section className="relative flex min-h-[100svh] w-full flex-col overflow-hidden">
       {/* Background image slideshow (always works, real photography) */}
       {HIGHLIGHTS.map((h, i) => (
         <div
@@ -95,7 +95,7 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-20" />
 
       {/* Content */}
-      <div className="container-wide relative flex h-full flex-col pb-8 pt-28">
+      <div className="container-wide relative z-10 flex flex-1 flex-col pb-12 pt-28">
         <motion.div
           variants={container}
           initial="hidden"

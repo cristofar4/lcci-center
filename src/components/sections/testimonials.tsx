@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
 import { TESTIMONIALS } from "@/lib/data";
 import { EASE, cn } from "@/lib/utils";
@@ -26,6 +26,12 @@ export function Testimonials() {
           <span className="eyebrow justify-center">Client Testimonials</span>
 
           <Quote className="mx-auto mt-8 h-10 w-10 text-gold-400/50" />
+
+          <div className="mt-6 flex items-center justify-center gap-1.5" aria-label="Five star rating">
+            {Array.from({ length: 5 }).map((_, s) => (
+              <Star key={s} className="h-5 w-5 fill-gold-400 text-gold-400" />
+            ))}
+          </div>
 
           <div className="relative mt-6 min-h-[200px] md:min-h-[180px]">
             <AnimatePresence mode="wait">

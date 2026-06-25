@@ -67,13 +67,13 @@ export const IMG = {
   skyline: "photo-1477959858617-67f85cf4f1df",
   cityAerial: "photo-1444723121867-7a241cacace9",
 
-  // People / testimonials
+  // People / testimonials (African professionals)
   person1: "photo-1573497019940-1c28c88b4f3e",
-  person2: "photo-1560250097-0b93528c311a",
-  person3: "photo-1580489944761-15a19d654956",
-  person4: "photo-1568602471122-7832951cc4c5",
+  person2: "photo-1531123897727-8f129e1688ce",
+  person3: "photo-1573496359142-b8d87734a5a2",
+  person4: "photo-1542909168-82c3e7fdca5c",
   person5: "photo-1507003211169-0a1dd7228f2d",
-  person6: "photo-1494790108377-be9c29b29330",
+  person6: "photo-1589156229687-496a31ad1d1f",
 };
 
 export const HERO_VIDEOS = [

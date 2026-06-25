@@ -100,16 +100,6 @@ export function Navbar() {
                   <span className="block h-px w-3.5 bg-current" />
                 </span>
               </button>
-              <button
-                onClick={() => setOpen(true)}
-                className="hidden items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs uppercase tracking-[0.2em] text-mist transition-colors hover:border-gold-400/50 hover:text-ivory lg:flex"
-              >
-                Menu
-                <span className="flex flex-col gap-[3px]">
-                  <span className="block h-px w-4 bg-current" />
-                  <span className="block h-px w-4 bg-current" />
-                </span>
-              </button>
             </div>
           </nav>
         </div>

@@ -333,28 +333,28 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "The most professional venue we have worked with in Nigeria. The team made a 4,000 delegate summit feel effortless.",
+      "We hosted four thousand delegates here and not one thing fell through the cracks. The team anticipated our needs before we even raised them. Easily the best venue experience we have had in Nigeria.",
     name: "Adaeze Okafor",
     role: "Director, Pan African Business Forum",
     image: IMG.person6,
   },
   {
     quote:
-      "From load in to teardown the execution was flawless. Our exhibitors called it the best fair floor on the continent.",
+      "From load in to teardown everything was seamless. Our exhibitors kept telling us it was the smoothest fair floor they had worked on anywhere on the continent. We are already booked for next year.",
     name: "Tunde Bakare",
-    role: "CEO, Lagos Trade Expo",
+    role: "Chief Executive, Lagos Trade Expo",
     image: IMG.person2,
   },
   {
     quote:
-      "World class acoustics and broadcast infrastructure. Our product launch streamed to forty countries without a hitch.",
+      "The acoustics and broadcast setup are world class. We streamed our launch live to forty countries with zero technical issues, and the production team made our brand look incredible.",
     name: "Ngozi Eze",
     role: "VP Marketing, Continental Telecom",
     image: IMG.person1,
   },
   {
     quote:
-      "A truly premium setting. The ballroom and hospitality elevated our awards night beyond anything we imagined.",
+      "The ballroom took our breath away and the service matched it. Every guest at our awards night felt looked after. This is now our home for the event, year after year.",
     name: "Ibrahim Sani",
     role: "Chair, Industry Excellence Awards",
     image: IMG.person4,

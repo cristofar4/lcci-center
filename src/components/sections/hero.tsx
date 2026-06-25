@@ -95,12 +95,12 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:80px_80px] opacity-20" />
 
       {/* Content */}
-      <div className="container-wide relative flex h-full flex-col justify-center pt-24">
+      <div className="container-wide relative flex h-full flex-col pb-8 pt-28">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-4xl"
+          className="flex w-full max-w-4xl flex-1 flex-col justify-center"
         >
           <motion.div variants={item}>
             <span className="eyebrow text-gold-300">
@@ -150,10 +150,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.9, ease: EASE.expo }}
-          className="absolute inset-x-0 bottom-0"
+          className="mt-10 w-full shrink-0"
         >
-          <div className="container-wide pb-8">
-            <div className="flex flex-col gap-6 rounded-2xl glass p-5 md:flex-row md:items-center md:justify-between md:p-6">
+          <div className="flex flex-col gap-6 rounded-2xl glass p-5 md:flex-row md:items-center md:justify-between md:p-6">
               <div className="flex divide-x divide-white/10">
                 {HERO_STATS.map((s) => (
                   <div key={s.l} className="px-5 first:pl-0">
@@ -192,7 +191,6 @@ export function Hero() {
                 ))}
               </div>
             </div>
-          </div>
         </motion.div>
       </div>
     </section>

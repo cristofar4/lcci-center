@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A0E1A"/>
+      <stop offset="0.55" stop-color="#0A0E1A"/>
+      <stop offset="1" stop-color="#05070D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="22%" r="55%">
+      <stop offset="0" stop-color="#C9A24B" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E7CE97"/>
+      <stop offset="0.55" stop-color="#D6B26B"/>
+      <stop offset="1" stop-color="#C9A24B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <g stroke="#D6B26B" stroke-opacity="0.06">
+    <path d="M0 158 H1200 M0 316 H1200 M0 474 H1200 M300 0 V630 M600 0 V630 M900 0 V630" fill="none"/>
+  </g>
+
+  <!-- Emblem -->
+  <g transform="translate(90,86)">
+    <rect x="1" y="1" width="86" height="86" rx="20" fill="none" stroke="url(#gold)" stroke-width="2"/>
+    <path d="M24 64 V38 a20 20 0 0 1 40 0 V64" fill="none" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M34 64 V42 a10 10 0 0 1 20 0 V64" fill="none" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+    <line x1="18" y1="64" x2="70" y2="64" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <text x="196" y="126" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#F4F1E9" letter-spacing="1">LCCI</text>
+  <text x="196" y="156" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#A9B0BE" letter-spacing="6">CONFERENCE AND EXHIBITION CENTRE</text>
+
+  <text x="90" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="84" fill="#F4F1E9">Where Industry</text>
+  <text x="90" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="84" font-style="italic" fill="url(#gold)">Convenes in Lagos</text>
+
+  <text x="90" y="520" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#A9B0BE">Nigeria's premier conference and exhibition destination</text>
+
+  <g transform="translate(90,556)" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#D6B26B" letter-spacing="3">
+    <text x="0" y="0">6,000 CAPACITY</text>
+    <text x="260" y="0" fill="#6B7385">·</text>
+    <text x="290" y="0">12 VENUES</text>
+    <text x="470" y="0" fill="#6B7385">·</text>
+    <text x="500" y="0">25,000 SQM</text>
+  </g>
+</svg>

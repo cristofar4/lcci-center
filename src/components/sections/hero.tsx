@@ -28,17 +28,31 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const pausedRef = useRef(false);
+  const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Auto advance cinematic background
+  // Auto advance cinematic background, paused while the visitor browses cards
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
-    const t = setInterval(
-      () => setActive((i) => (i + 1) % HIGHLIGHTS.length),
-      5200,
-    );
-    return () => clearInterval(t);
+    const t = setInterval(() => {
+      if (!pausedRef.current) setActive((i) => (i + 1) % HIGHLIGHTS.length);
+    }, 5200);
+    return () => {
+      clearInterval(t);
+      if (resumeRef.current) clearTimeout(resumeRef.current);
+    };
   }, []);
+
+  // The background follows the highlight the visitor selects, then gently resumes
+  const selectHighlight = (i: number) => {
+    pausedRef.current = true;
+    setActive(i);
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+    resumeRef.current = setTimeout(() => {
+      pausedRef.current = false;
+    }, 9000);
+  };
 
   const container = {
     hidden: {},
@@ -170,9 +184,9 @@ export function Hero() {
                 {HIGHLIGHTS.map((h, i) => (
                   <button
                     key={h.id}
-                    onMouseEnter={() => setActive(i)}
-                    onFocus={() => setActive(i)}
-                    onClick={() => setActive(i)}
+                    onMouseEnter={() => selectHighlight(i)}
+                    onFocus={() => selectHighlight(i)}
+                    onClick={() => selectHighlight(i)}
                     className={`group relative flex shrink-0 items-center gap-3 rounded-xl border p-2 pr-4 text-left transition-all duration-300 ${
                       i === active
                         ? "border-gold-400/50 bg-white/5"

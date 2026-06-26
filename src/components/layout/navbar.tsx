@@ -19,31 +19,27 @@ import { ArrowUpRight } from "lucide-react";
 export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
     setScrolled(y > 24);
-    if (open) return;
-    setHidden(y > prev && y > 240);
   });
 
   return (
     <>
       <motion.header
         initial={{ y: -120 }}
-        animate={{ y: hidden ? -120 : 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="fixed inset-x-0 top-0 z-[80]"
       >
         <div
           className={cn(
-            "transition-colors duration-500",
+            "transition-all duration-500",
             scrolled
-              ? "border-b border-white/10 bg-ink-950/70 backdrop-blur-xl"
-              : "border-b border-transparent bg-transparent",
+              ? "border-b border-white/10 bg-ink-950/80 backdrop-blur-xl"
+              : "border-b border-transparent bg-gradient-to-b from-ink-950/90 via-ink-950/45 to-transparent",
           )}
         >
           <nav className="container-wide flex h-20 items-center justify-between gap-6">
@@ -62,10 +58,10 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "relative rounded-full px-4 py-2 text-sm transition-colors duration-300",
+                        "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300",
                         active
                           ? "text-ivory"
-                          : "text-mist hover:text-ivory",
+                          : "text-ivory/80 hover:text-ivory",
                       )}
                     >
                       {active && (

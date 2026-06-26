@@ -78,8 +78,7 @@ export function Hero() {
             alt={h.name}
             priority={i === 0}
             sizes="100vw"
-            className="h-full w-full"
-            imgClassName="scale-105"
+            className="h-full w-full animate-kenburns will-change-transform motion-reduce:animate-none"
           />
         </div>
       ))}

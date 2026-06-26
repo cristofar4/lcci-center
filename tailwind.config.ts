@@ -132,12 +132,17 @@ const config: Config = {
           "0%": { transform: "scale(0.8)", opacity: "0.6" },
           "100%": { transform: "scale(2.2)", opacity: "0" },
         },
+        kenburns: {
+          "0%": { transform: "scale(1.05) translate3d(0, 0, 0)" },
+          "100%": { transform: "scale(1.18) translate3d(-1.5%, -1.2%, 0)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.8s cubic-bezier(0.16,1,0.3,1) both",
         marquee: "marquee 38s linear infinite",
         float: "float 7s ease-in-out infinite",
         "pulse-ring": "pulse-ring 2.6s cubic-bezier(0.16,1,0.3,1) infinite",
+        kenburns: "kenburns 18s ease-in-out infinite alternate",
       },
     },
   },

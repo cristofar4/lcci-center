@@ -61,7 +61,7 @@ export function Testimonials() {
                     : "opacity-50 ring-white/15 hover:opacity-100",
                 )}
               >
-                <SmartImage id={item.image} alt={item.name} sizes="48px" className="h-full w-full" />
+                <SmartImage id={item.image} alt={item.name} width={150} quality={75} sizes="48px" className="h-full w-full" />
               </button>
             ))}
           </div>

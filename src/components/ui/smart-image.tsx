@@ -14,6 +14,9 @@ type SmartImageProps = {
   imgClassName?: string;
   sizes?: string;
   priority?: boolean;
+  loading?: "lazy" | "eager";
+  /** snappier fade in, better for dense grids like the gallery */
+  fast?: boolean;
   width?: number;
   quality?: number;
   /** seed for the deterministic branded fallback */
@@ -28,6 +31,8 @@ export function SmartImage({
   imgClassName,
   sizes = "100vw",
   priority = false,
+  loading,
+  fast = false,
   width = 1600,
   quality = 80,
   seed,
@@ -76,10 +81,12 @@ export function SmartImage({
           sizes={sizes}
           quality={quality}
           priority={priority}
+          {...(!priority && loading ? { loading } : {})}
           onLoad={() => setLoaded(true)}
           onError={() => setErrored(true)}
           className={cn(
-            "object-cover transition-[opacity,transform] duration-1000 ease-expo",
+            "object-cover transition-[opacity,transform] ease-expo",
+            fast ? "duration-500" : "duration-1000",
             loaded ? "opacity-100 scale-100" : "opacity-0 scale-[1.06]",
             imgClassName,
           )}

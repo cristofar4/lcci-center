@@ -194,7 +194,7 @@ export function Hero() {
                     aria-label={`Show ${h.name}`}
                   >
                     <span className="relative h-11 w-14 overflow-hidden rounded-lg">
-                      <SmartImage id={h.id} alt={h.name} sizes="56px" className="h-full w-full" />
+                      <SmartImage id={h.id} alt={h.name} width={140} quality={70} sizes="56px" className="h-full w-full" />
                     </span>
                     <span className="hidden sm:block">
                       <span className="block text-sm text-ivory">{h.name}</span>

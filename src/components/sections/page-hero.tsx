@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SmartImage } from "@/components/ui/smart-image";
 import { SplitText } from "@/components/anim/split-text";
 import { Reveal } from "@/components/anim/reveal";
@@ -11,13 +10,13 @@ export function PageHero({
   goldWords = [],
   description,
   image,
-  crumbs = [],
 }: {
   eyebrow: string;
   title: string;
   goldWords?: number[];
   description?: string;
   image: string;
+  /** retained for compatibility, no longer rendered */
   crumbs?: Crumb[];
 }) {
   return (
@@ -36,22 +35,6 @@ export function PageHero({
 
       <div className="container-wide relative">
         <Reveal>
-          <nav className="mb-6 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-mist">
-            <Link href="/" className="hover:text-ivory">
-              Home
-            </Link>
-            {crumbs.map((c) => (
-              <span key={c.href} className="flex items-center gap-2">
-                <span className="text-slate">/</span>
-                <Link href={c.href} className="hover:text-ivory">
-                  {c.label}
-                </Link>
-              </span>
-            ))}
-          </nav>
-        </Reveal>
-
-        <Reveal delay={0.05}>
           <span className="eyebrow text-gold-300">{eyebrow}</span>
         </Reveal>
 

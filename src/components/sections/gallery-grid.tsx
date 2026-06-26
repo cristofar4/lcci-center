@@ -88,6 +88,9 @@ export function GalleryGrid({
               <SmartImage
                 id={g.src}
                 alt={g.title}
+                width={700}
+                quality={70}
+                fast
                 sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                 className="h-full w-full"
                 imgClassName="transition-transform duration-1000 group-hover:scale-105"
@@ -147,7 +150,7 @@ export function GalleryGrid({
               className="relative w-full max-w-5xl"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
-                <SmartImage id={current.src} alt={current.title} sizes="90vw" className="h-full w-full" />
+                <SmartImage id={current.src} alt={current.title} width={1500} priority fast sizes="90vw" className="h-full w-full" />
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div>

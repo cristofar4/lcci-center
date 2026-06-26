@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap";
-import { cn } from "@/lib/utils";
-import { formatNumber } from "@/lib/utils";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import { cn, formatNumber } from "@/lib/utils";
+
+const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type CounterProps = {
   value: number;
@@ -22,27 +23,54 @@ export function Counter({
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
 
-  useGSAP(
-    () => {
-      const el = ref.current;
-      if (!el) return;
-      if (prefersReducedMotion()) {
-        el.textContent = `${prefix}${formatNumber(value)}${suffix}`;
-        return;
-      }
-      const obj = { n: 0 };
+  useIso(() => {
+    const el = ref.current;
+    if (!el) return;
+    const render = (n: number) => {
+      el.textContent = `${prefix}${formatNumber(Math.round(n))}${suffix}`;
+    };
+
+    if (prefersReducedMotion()) {
+      render(value);
+      return;
+    }
+
+    render(0);
+    let played = false;
+    const obj = { n: 0 };
+    const play = () => {
+      if (played) return;
+      played = true;
       gsap.to(obj, {
         n: value,
         duration,
         ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 90%", once: true },
-        onUpdate: () => {
-          el.textContent = `${prefix}${formatNumber(Math.round(obj.n))}${suffix}`;
-        },
+        onUpdate: () => render(obj.n),
       });
-    },
-    { scope: ref },
-  );
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          play();
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+
+    const t = window.setTimeout(() => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) play();
+    }, 500);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(t);
+      gsap.killTweensOf(obj);
+    };
+  }, [value, prefix, suffix, duration]);
 
   return (
     <span ref={ref} className={cn(className)}>

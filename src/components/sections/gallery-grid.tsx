@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { SmartImage } from "@/components/ui/smart-image";
 import { GALLERY, GALLERY_CATEGORIES, type GalleryItem } from "@/lib/data";
+import { unsplash } from "@/lib/images";
 import { EASE, cn } from "@/lib/utils";
 
 export function GalleryGrid({
@@ -16,6 +17,7 @@ export function GalleryGrid({
 }) {
   const [cat, setCat] = useState("All");
   const [open, setOpen] = useState<number | null>(null);
+  const [hiLoaded, setHiLoaded] = useState(false);
 
   const filtered = useMemo(
     () => (cat === "All" ? items : items.filter((g) => g.category === cat)),
@@ -45,6 +47,18 @@ export function GalleryGrid({
       document.documentElement.style.overflow = "";
     };
   }, [open, close, go]);
+
+  // Reset the fade and preload the current plus neighbouring full images so
+  // the lightbox shows instantly and arrow navigation has no wait.
+  useEffect(() => {
+    if (open === null || filtered.length === 0) return;
+    setHiLoaded(false);
+    const n = filtered.length;
+    [open, (open + 1) % n, (open - 1 + n) % n].forEach((i) => {
+      const im = new window.Image();
+      im.src = unsplash(filtered[i].src, { w: 1200, q: 80 });
+    });
+  }, [open, filtered]);
 
   const current = open !== null ? filtered[open] : null;
 
@@ -149,8 +163,32 @@ export function GalleryGrid({
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-5xl"
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
-                <SmartImage id={current.src} alt={current.title} width={1500} priority fast sizes="90vw" className="h-full w-full" />
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-charcoal-800">
+                {/* cached thumbnail, shown instantly as a blurred base */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={unsplash(current.src, { w: 700, q: 70 })}
+                  alt=""
+                  aria-hidden
+                  className="absolute inset-0 h-full w-full scale-105 object-cover blur-lg"
+                />
+                {/* high resolution image fades in over the base once ready */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  key={current.src}
+                  src={unsplash(current.src, { w: 1200, q: 80 })}
+                  alt={current.title}
+                  onLoad={() => setHiLoaded(true)}
+                  className={cn(
+                    "absolute inset-0 h-full w-full object-cover transition-opacity duration-500",
+                    hiLoaded ? "opacity-100" : "opacity-0",
+                  )}
+                />
+                {!hiLoaded && (
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                    <span className="block h-6 w-6 animate-spin rounded-full border-2 border-white/20 border-t-gold-400" />
+                  </div>
+                )}
               </div>
               <div className="mt-4 flex items-center justify-between">
                 <div>
